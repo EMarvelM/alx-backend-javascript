@@ -41,3 +41,40 @@ const printTeacher: printTeacherFunction = (firstName, lastName) => {
 }
 
 console.log(printTeacher("John", "Doe"));
+
+
+interface createStudentConstructor {
+  new (firstName: string, lastName: string): createStudentClass
+}
+
+// class
+interface createStudentClass {
+  _firstName: string;
+  _lastName: string;
+  displayName(): string;
+}
+
+class StudentClass implements createStudentClass{
+  _firstName: string;
+  _lastName: string;
+
+  constructor(firstName: string, lastName: string) {
+    this._firstName = firstName;
+    this._lastName = lastName;
+  }
+
+  static workOnHomework(): string {
+    return 'Currently working';
+  }
+
+  displayName(): string {
+    return this._firstName;
+  } 
+}
+
+// Assign the class to a variable with the type of the constructor interface
+const StudentClassConstructor: createStudentConstructor = StudentClass;
+
+const student = new StudentClass("John", "Doe");
+console.log(student.displayName()); // Output: John
+console.log(StudentClass.workOnHomework()); // Output: Currently working
