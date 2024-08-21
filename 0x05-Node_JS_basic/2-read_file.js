@@ -1,16 +1,15 @@
 const fs = require('fs');
 
-module.exports = function countStudents(path) {
+function countStudents(path) {
   try {
     if (fs.accessSync(path) === undefined) {
       const content = fs.readFileSync(path, { encoding: 'utf-8' }).split('\n').slice(1);
-  
       const obj = {};
-  
+
       content.forEach((da) => {
         const lastElement = da.split(',').slice(-1)[0];
         const firstElement = da.split(',').slice(0)[0];
-  
+
         if (lastElement.length < 1) {
           return;
         }
@@ -28,7 +27,9 @@ module.exports = function countStudents(path) {
         console.log(`Number of students in ${key}: ${obj[key].count}. List: ${obj[key].name.join(', ')}`);
       });
     }
-  } catch {
+  } catch (err) {
     throw new Error('Cannot load the database');
   }
-};
+}
+
+module.exports = countStudents;
