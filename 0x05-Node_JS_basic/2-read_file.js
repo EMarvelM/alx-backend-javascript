@@ -23,6 +23,7 @@ function countStudents(path) {
           };
         }
       });
+      console.log(`Number of students: ${content.length}`);
       Object.keys(obj).forEach((key) => {
         console.log(`Number of students in ${key}: ${obj[key].count}. List: ${obj[key].name.join(', ')}`);
       });
