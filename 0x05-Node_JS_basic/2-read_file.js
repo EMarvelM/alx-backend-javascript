@@ -3,7 +3,7 @@ const fs = require('fs');
 function countStudents(path) {
   try {
     if (fs.accessSync(path) === undefined) {
-      const content = fs.readFileSync(path, { encoding: 'utf-8' }).split('\n').slice(1);
+      const content = fs.readFileSync(path, { encoding: 'utf-8' }).split('\n').slice(1).filter((d) => d.trim().length > 0);
       const obj = {};
 
       content.forEach((da) => {
