@@ -14,8 +14,8 @@ app.get('/students', (req, res) => {
     let re = 'This is the list of our students\n';
     fs.readFile(argv[2], { encoding: 'utf-8' }, (err, data) => {
       if (err) {
-        res.statusCode = 404;
-        res.end(`${re} Cannot load the database`);
+        res.statusCode = 500;
+        res.end(`${re}Cannot load the database`);
         return;
       }
       const content = data.split('\n').slice(1).filter((d) => d.trim().length > 0);
