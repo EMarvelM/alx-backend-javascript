@@ -11,6 +11,7 @@ const app = http.createServer((req, res) => {
       let re = 'This is the list of our students\n';
       fs.readFile(argv[2], { encoding: 'utf-8' }, (err, data) => {
         if (err) {
+          res.statusCode = 403;
           res.end('Cannot load the database');
         }
         const content = data.split('\n').slice(1).filter((d) => d.trim().length > 0);
@@ -41,6 +42,7 @@ const app = http.createServer((req, res) => {
         res.end(re);
       });
     } catch (err) {
+      res.statusCode = 403;
       res.end('Cannot load the database');
     }
   }
