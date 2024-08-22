@@ -12,7 +12,6 @@ app.get('/', (req, res) => {
 app.get('/students', (req, res) => {
   try {
     let re = 'This is the list of our students\n';
-    console.log(argv);
     fs.readFile(argv[2], { encoding: 'utf-8' }, (err, data) => {
       if (err) {
         res.statusCode = 404;
