@@ -13,6 +13,7 @@ const app = http.createServer((req, res) => {
         if (err) {
           res.statusCode = 403;
           res.end('Cannot load the database');
+          return;
         }
         const content = data.split('\n').slice(1).filter((d) => d.trim().length > 0);
         const obj = {};
